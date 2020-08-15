@@ -1,0 +1,49 @@
+#GameLogo{
+	width:100%;
+	min-width:320px;
+	max-width:1280px;
+}
+
+#Screen{
+	padding-top:0px;
+	padding-left:4px;
+	padding-right:4px;
+	background-color:black;
+	width:480px;
+	height:424px;
+	color:green;
+	font-size:100%;
+	word-wrap:break-word;
+	font-family:courier;
+}
+
+#ScreenText{
+	width:100%;
+	height:94%;
+}
+
+.TextLine{
+	width:100%;
+	height:18px;
+}
+
+#cmdLine{
+	font-family:courier;
+	float:center-left;
+	color:green;
+	border:none;
+	padding-left:2px;
+	background-color:black;
+	width:80%;
+	height:18px;
+}
+
+#submitButton{
+	float:right;
+	width:16%;
+	height:23px;
+	color:green;
+	background-color:black;
+	border-color:green;
+	border-style:solid;
+}

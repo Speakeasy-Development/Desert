@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<META id="META" name="viewport" content="width=device-width; initial-scale=1.0 user-scalable=0" >
+		<meta charset="UTF-8"> 
+		<link rel="stylesheet" href="io-index-style.css">
+		<title>Desert</title>
+	</head>
+
+	<body>
+		<div id="Screen">
+			<div id="ScreenText">
+				<div id="0" class = "TextLine"></div>
+				<div id="1" class = "TextLine"></div>
+				<div id="2" class = "TextLine"></div>
+				<div id="3" class = "TextLine"></div>
+				<div id="4" class = "TextLine"></div>
+				<div id="5" class = "TextLine"></div>
+				<div id="6" class = "TextLine"></div>
+				<div id="7" class = "TextLine"></div>
+				<div id="8" class = "TextLine"></div>
+				<div id="9" class = "TextLine"></div>
+				<div id="10"class = "TextLine"></div>
+				<div id="11" class = "TextLine"></div>
+				<div id="12" class = "TextLine"></div>
+				<div id="13" class = "TextLine"></div>
+				<div id="14" class = "TextLine"></div>
+				<div id="15" class = "TextLine"></div>
+				<div id="16" class = "TextLine"></div>
+				<div id="17" class = "TextLine"></div>
+				<div id="18" class = "TextLine"></div>
+				<div id="19" class = "TextLine"></div>
+				<div id="20" class = "TextLine"></div>
+				<div id="21" class = "TextLine"></div>
+			</div>
+			&gt;<input type="text" id="cmdLine" maxlength="43"/>
+			<button type="button" id= "submitButton">Enter</button> 
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript" src="io-core-commands.js"></script>
+<script type="text/javascript" src="ruleset-core-entities.js"></script>
+<script type="text/javascript" src="ruleset-game-sdn.js"></script>
+<script type="text/javascript" src="ruleset-game-entities.js"></script>
+<script type="text/javascript" src="io-game-commands.js"></script>
+<script>
+	//Globals
+	var inputLine = document.getElementById("cmdLine");
+	const linelength = 50;
+	const rowCount = document.getElementsByClassName("TextLine").length;
+	const padChar = '-';
+	
+	var Log = [];
+	
+	// Command Modules, these contain the logic to run actions parsed by input, starting from first to last will pass this input down, stopping at first match
+	var commandModules = [];
+	
+	// The last command entered
+	var lastCommand = null;
+	
+	// Add core modules here
+	commandModules.push(new command_core());
+
+	function Submit(){
+		var input = inputLine.value.trimLeft();
+		
+		lastCommand = input;
+		
+		if(input != ""){
+			wipeScreen();
+		
+			//Parse the input, split command and para
+			input = input.toLowerCase();
+			args = input.split(" ");
+		
+			command = args[0];
+		
+			console.log("Command:" + command);
+			
+			writeLine(inputLine.value, rowCount-1);
+			
+			// Take input and run through each module, stop at first match
+			for(var cmdModuleIndex in commandModules){
+				var matched = commandModules[cmdModuleIndex].Submit(inputLine.value, command, args);
+				
+				if(matched){
+					break;
+				}
+			}
+		}
+		
+		inputLine.value = null;
+	}
+
+	//Tie Fields and Buttons
+	document.getElementById("submitButton").addEventListener("click",Submit);
+	
+	//Tie Keys
+	window.onkeyup = function(e){
+		var key = e.keyCode ? e.keyCode : e.which;
+		if(key == 13){
+			//Enter Key
+			Submit();
+		}else if(key == 38){
+			//Up Key
+			inputLine.value = lastCommand;
+		}else if(key == 40){
+			//down Key
+			inputLine.value = null;
+		}
+	}
+
+	// Pad the text with '-' or something to extend to edge of screen
+	function writeLineHeader(text, line){
+		writeLine(text.padEnd(linelength, padChar), line);
+	}
+
+	//General Operations
+	function writeLine(text, line){
+		//Writes only 1 line,
+		if(line < rowCount){
+			var linetoEdit = document.getElementsByClassName("TextLine")[line];
+			if(text != null && text.length >= linelength){
+				text = text.slice(0, linelength);
+			}
+			linetoEdit.innerHTML = text;	
+		}
+	}
+
+	//Wipes all the text off the screen
+	function wipeScreen(){
+		for(var i=0;i<rowCount;i++){
+			writeLine(null,i);
+		}
+	}
+
+</script>
+<script type="text/javascript" src="ruleset-game-setup.js"></script>
