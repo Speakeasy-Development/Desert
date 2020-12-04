@@ -1,0 +1,17 @@
+{
+	"title":"Desert",
+	"creators":[{"name":"Jason Carpenter","roles":[], "affiliation":"Speakeasy Development"}],
+	"type":"Video Game",
+	"publishers":["Github"],
+	"Licenses":[],
+	"releases":[{"platforms":["windows 10", "windows 7", "windows 8", "Ubuntu", "Mac"], "date":"2020-11-30"}],
+	"url":"https://github.com/Speakeasy-Development/Desert",
+	"abstract":"Awaking at the base of a large obelisk, you feel the words burn into your mind. Return to me the shards.",
+	"platforms":["windows 10", "windows 7", "windows 8", "Ubuntu", "Mac"],
+	"tools":["Notepad++", "MsPaint", "Firefox"],
+	"genres":["turn-based explorer"],
+	"modes":["single player"],
+	"supported-inputs":[{"inputtype":"Keyboard and Mouse", "supporttype":"Full"}],
+	"tags":["short","desert","turn-based"],
+	"version":["1.0.0"]
+}

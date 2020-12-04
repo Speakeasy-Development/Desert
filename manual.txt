@@ -1,0 +1,8 @@
+######### Gameplay
+Explore the desert, find the shards and return them to the obelisk. 
+
+
+######### RPG Stats
+Str: determines chance to hit for regular attacks and chance to avoid a deathblow.
+Agl: determines dodge chance and how far you can move.
+Int: determines chance to hit with ranged attack and how far you can see with detail.
